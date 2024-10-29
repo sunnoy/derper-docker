@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+
+  derper:
+    container_name: derper
+    image: ghcr.io/sunnoy/derper:latest
+    environment:
+      - DERP_DOMAIN=derper.li-rui.top
+      - DERP_VERIFY_CLIENTS=true
+      - DERP_ADDR=:1989
+    ports:
+      - 3478:3478/udp
+      - 1989:1989
+    # network_mode: host
+    volumes:
+      - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock
+    restart: always
